@@ -52,6 +52,6 @@ Mkfile.old
 dkms.conf
 
 #Pictures and Photos
-.png
-.gif
-.jpeg
+*.png
+*.gif
+*.jpeg
