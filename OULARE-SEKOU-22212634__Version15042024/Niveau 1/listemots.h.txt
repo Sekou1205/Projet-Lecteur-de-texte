@@ -1,0 +1,27 @@
+// Type permettant de manipuler une liste de mots
+typedef struct sListeMots * tListeMots ;
+
+#ifndef LISTEMOTS_H
+#define LISTEMOTS_H
+
+// Structure de la liste de mots
+typedef struct sMot {
+    char *mot;
+    int taille;
+    int occurrences;
+    struct sMot *suivant;
+} Mot;
+
+// Structure de la liste de mots
+typedef struct {
+    Mot *debut;
+    Mot *fin;
+    int nbMots;
+} ListeMots;
+
+// Fonctions publiques
+ListeMots creerListeMots(void);
+void motLiberer(Mot *mot);
+
+#endif /* LISTEMOTS_H */
+

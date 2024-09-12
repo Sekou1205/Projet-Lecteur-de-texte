@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Lecture et affichage d'un fichier texte ISO Latin 1</title>
+<script>
+  function readFile(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      
+      reader.onload = function(e) {
+        const decoder = new TextDecoder('iso-8859-1');
+        const text = decoder.decode(e.target.result);
+        var output = document.getElementById('fileContent');
+        output.innerHTML = ''; // clear previous content
+        var lines = text.split('\n');
+        var list = document.createElement('ul');
+        lines.forEach(function(line) {
+          if (line.trim() != "") {
+            var listItem = document.createElement('li');
+            listItem.textContent = line;
+            list.appendChild(listItem);  
+          }
+        });
+        output.appendChild(list);
+      };
+      
+      reader.readAsArrayBuffer(input.files[0]);
+    }
+  }
+</script>
+</head>
+<body>
+
+<h2>Sélectionnez un fichier texte (ISO Latin 1) à lire :</h2>
+(par exemple <code>statistiques.txt</code> ou <code>liste_mots_01.txt</code>)
+
+<p>
+  <input type="file" onchange="readFile(this)">
+</p>
+
+<div id="fileContent">
+  <!-- The content of the file will be displayed here -->
+</div>
+
+</body>
+</html>
